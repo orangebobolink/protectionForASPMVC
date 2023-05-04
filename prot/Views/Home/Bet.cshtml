@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model Bet
+
+<form asp-action="CreateBet" asp-controller="Home" method="post" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <label>Ваше имя</label>
+        <input required=@true class="form-control" type="text" asp-for="Name">
+    </div>
+    <div class="form-check">
+        @Html.RadioButton("Command", @Model.Match.CommandOne, true)
+        <label class="form-check-label" asp-for="Command">
+            @Model.Match.CommandOne
+        </label>
+    </div>
+    <div class="form-check">
+        @Html.RadioButton("Command", @Model.Match.CommandTwo)
+        <label class="form-check-label" asp-for="Command">
+            @Model.Match.CommandTwo
+        </label>
+    </div>
+    <div class="form-group">
+        <label>Сумма</label>
+        <input required=@true class="form-control" type="number" value="" asp-for="SumOfBet">
+    </div>
+    <div class="mb-4" style="padding-bottom: 10px">
+        <input type="hidden" class="form-control" asp-for="Id" />
+        <input type="hidden" class="form-control" asp-for="MatchId" />
+    </div>
+
+    <input type="submit" class="btn btn-primary" value="Создать">
+    <a class="btn btn-primary" href="@Url.Action("Index", "Home")" role="button">Отмена</a>
+</form>
